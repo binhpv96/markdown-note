@@ -110,8 +110,59 @@ Cú pháp:
 
 👉 **Selection-screen (cơ bản)**
 `SELECTION-SCREEN` giúp tạo giao diện nhận dữ liệu
-    > `PARAMETERS: p_name TYPE STRING,`
+> `PARAMETERS: p_name TYPE STRING,`
 > `p_age TYPE I.`
 
 🌐[Video Basic Syntax - Part 2](https://youtu.be/HbCroU8FODU)
+
 <br>
+
+> ***Transaction code***
+> - SE38 create / change / display ABAP program
+> - SE11 to open ABAP dictionary and create table / view / data elements / domains
+> - SE91 to open Message Class
+
+### 📌 LESSON 2 - Data Dictionary
+
+👉 **What is data dictionary?**
+Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đối tượng dữ liệu như `Table`, `View`, `Data Elements`, `Domains`, . . . mà không cần thao tác trực tiếp với hệ quản trị cơ sở dữ liệu ( DBMS ).
+
+<br>
+
+👉 **1. Domains**
+- Xác định kiểu dữ liệu, độ dài, giá trị hợp lệ ( value range ) cho một trường
+- Một domain có thể được dùng bởi nhiều `data elements` khác nhau
+💡Ví dụ: Domain `DOM_CURENCY` có kiểu dữ liệu `CHAR (3)` dùng để lưu các mã tiền tệ (VND, EUR, USD, ...)
+
+<br>
+
+👉 **2. Data Elements**
+- Là định nghĩa một trường dữ liệu dựa trên domain.
+- Chứa mô tả ( short text ) và có thể gán vào các trường trong bảng.
+💡Ví dụ: `DE_CURRENCY` dùng domain `DOM_CURRENCY`.
+
+<br>
+
+👉 **3. Table**
+- Đây là đối tượng quan trọng nhất của Data Dictionary
+- `Transparent table` là bảng thông dụng nhất, lưu dữ liệu trực tiếp vào bảng vật lý trong CSDL.
+- `Pooled Table & Cluster Table` (chả ma nào dùng).
+
+<br>
+
+👉 **4. Views**
+- Dùng để xem dữ liệu từ 1 hoặc nhiều bảng gộp lại 1 lần (mà không lưu dữ liệu vật lý)
+- Có 4 loại: 
+`Database View`: tương tự JOIN trong SQL Sever
+`Protection View`: lọc bớt cột của một bảng
+`Help View`: hỗ trợ tìm kiếm dữ liệu
+`Maintenance`: chỉnh sửa dữ liệu trong giao diện SAP
+
+<br>
+
+👉 **5. Types**
+- Giúp định nghĩa kiểu dữ liệu có thể tái sử dụng
+- Gồm các loại: `Structure ( STRUC )`, `Table Type ( TTYP )`, `Data Type ( DTEL )` và `Domain (  DOMA )`.
+💡Ví dụ 
+    > `TYPES: ty_amount TYPE p DECIMALS 2.`
+    > `DATA: lv_total TYPE ty_amount.`
