@@ -166,3 +166,37 @@ Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đ�
 💡Ví dụ 
     > `TYPES: ty_amount TYPE p DECIMALS 2.`
     > `DATA: lv_total TYPE ty_amount.`
+
+### 📌 LESSON 3 - ABAP Open SQL
+
+👉 **1. What is Open SQL**
+
+ | Tiêu chí | Open SQL | Native SQL | 
+ | ----------- | ----------- | ----------- |
+ | **`Định nghĩa`** | Tập hợp các lệnh SQL chuẩn của SAP để thao tác với CSDL trong môi trường ABAP | Lệnh SQL thuần ( thuộc DBMS ) có thể gọi trực tiếp từ ABAP |
+ | **`Tính độc lập với DBMS`** | Hoạt động trên mọi hệ DBMS mà SAP hỗ trợ | Phụ thuộc vào từng DBMS riêng (`Oracle`, `MSSQL`, . . .) |
+ | **`Tối ưu hóa hiệu suất`** | SAP tự động tối ưu hóa + chuyển đổi SQL phù hợp với DBMS | Không tự động tối ưu hóa |
+ | **`Dễ sử dụng`** | Cú pháp đơn giản | Phức tạp, cần viết đúng cú pháp của từng loại DBMS |
+ | **`Hỗ trợ các lệnh SQL`** | Không hỗ trợ các lệnh như `JOIN` phức tạp, `GROUP BY`, `ORDER BY` | Hỗ trợ tất cả |
+ | **`Truy vấn các bảng ngoài SAP Dictionary`** | Không | Truy cập tất cả bảng trong DBMS, kể cả bảng không thuộc SAP |
+ | **`Duy trì hệ thống`** | Dễ bảo trì, thể chuyển đổi giữa các DBMS mà không cần sửa code | Muốn đổi DBMS phải sửa toàn bộ Native SQL |
+
+<br>
+
+👉 **2. Internal Table và Work Area ( Structure )**
+
+ | Tiêu chí | Work Area | Internal Table | 
+ | ----------- | ----------- | ----------- |
+ | **`Dữ liệu chứa`** | Chỉ chứa 1 dòng tại 1 thời điểm | Chứa nhiều dòng |
+ | **`Sử dụng khi`** | Cần thao tác trên từng dòng | Cần thao tác, lưu trữ nhiều dòng dữ liệu |
+ 
+<br>
+
+👉 **3. SELECT INTO Internal Table và SELECT INTO Work Area**
+
+| Tiêu chí | SELECT INTO Internal Table | SELECT INTO Work Area |
+| ---------| ---------------------------| ----------------------|
+| Cách lưu | Lưu nhiều dòng vào Internal Table | Lưu từng dòng vào Work Area |
+| Hiệu suất | Nhanh hơn khi cần lưu nhiều dòng cùng một lúc | Chậm hơn nếu dữ liệu lớn vì phải lặp nhiều lần |
+| Cách dùng | Phù hợp khi cần duyệt qua nhiều dòng sau khi truy vấn | Phù hợp khi chỉ lấy 1 dòng hoặc xử lý từng dòng sau khi truy vấn |
+| Sử dụng với `LOOP AT` | Có thể duyệt qua toàn bộ bảng nội bộ | Không được dùng trực tiếp, phải đọc từng dòng riêng lẻ |
