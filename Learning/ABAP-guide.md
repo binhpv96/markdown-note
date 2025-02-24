@@ -169,7 +169,7 @@ Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đ�
 
 ### 📌 LESSON 3 - ABAP Open SQL
 
-👉 **1. What is Open SQL**
+👉 **What is Open SQL**
 
  | Tiêu chí | Open SQL | Native SQL | 
  | ----------- | ----------- | ----------- |
@@ -181,9 +181,11 @@ Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đ�
  | **`Truy vấn các bảng ngoài SAP Dictionary`** | Không | Truy cập tất cả bảng trong DBMS, kể cả bảng không thuộc SAP |
  | **`Duy trì hệ thống`** | Dễ bảo trì, thể chuyển đổi giữa các DBMS mà không cần sửa code | Muốn đổi DBMS phải sửa toàn bộ Native SQL |
 
-<br>
+___
 
-👉 **2. Internal Table và Work Area ( Structure )**
+### 📌 LESSON 4 - Internal table
+
+👉 **Internal Table và Work Area ( Structure )**
 
  | Tiêu chí | Work Area | Internal Table | 
  | ----------- | ----------- | ----------- |
@@ -192,7 +194,18 @@ Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đ�
  
 <br>
 
-👉 **3. SELECT INTO Internal Table và SELECT INTO Work Area**
+👉 **How to create Work Area**
+
+1. Khai báo Work Area từ một bảng dữ liệu
+> `DATA wa_ak1 TYPE ak1. "Khai báo Work Area theo cấu trúc bảng AK1`
+2.  Khai báo Work Area từ một cấu trúc dữ liệu ( Structure )
+> `DATA wa_custom TYPE zcustom_struct. "Work Area theo cấu trúc tự định nghĩa`
+3. Khai báo Work Area từ Internal Table
+> `DATA: it_kna1 TYPE TABLE OF kna1,`
+> `wa_kna1 TYPE kna1.`
+
+
+👉 **SELECT INTO Internal Table và SELECT INTO Work Area**
 
 | Tiêu chí | SELECT INTO Internal Table | SELECT INTO Work Area |
 | ---------| ---------------------------| ----------------------|
@@ -200,3 +213,14 @@ Data dictionary giúp quản lí dữ liệu trong SAP. Nó cung cấp các đ�
 | Hiệu suất | Nhanh hơn khi cần lưu nhiều dòng cùng một lúc | Chậm hơn nếu dữ liệu lớn vì phải lặp nhiều lần |
 | Cách dùng | Phù hợp khi cần duyệt qua nhiều dòng sau khi truy vấn | Phù hợp khi chỉ lấy 1 dòng hoặc xử lý từng dòng sau khi truy vấn |
 | Sử dụng với `LOOP AT` | Có thể duyệt qua toàn bộ bảng nội bộ | Không được dùng trực tiếp, phải đọc từng dòng riêng lẻ |
+
+<br>
+
+👉 **Move data between 2 Work Area**
+
+> `MOVE-CORRESPONDING wa_1 TO wa_2.`
+
+👉 **What is HEADER LINE?**
+- Is a special Work Area
+- Đóng vai trò như một Work Area đi kèm với Internal Table 
+➡️ Tốt nhất không nên dùng Header line vì nó có cùng tên với internal table -> rất dễ nhầm và các lệnh cũng không phân biệt được là đang tương tác với `Work Area` hay `INTERNAL TABLE`
